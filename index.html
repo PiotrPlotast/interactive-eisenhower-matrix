@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap"
+    />
+    <title>Interactive Eisenhower Matrix</title>
+  </head>
+  <body>
+    <header>
+      <h1>Interactive Eisenhower Matrix</h1>
+    </header>
+    <main>
+      <div class="matrix">
+        <div class="matrix__quadrant matrix__quadrant--important-urgent">
+          <h2>Important & Urgent</h2>
+          <ul class="matrix__quadrant--important-urgent__list">
+            <input class="matrix__quadrant--important-urgent__add" />
+          </ul>
+        </div>
+        <div class="matrix__quadrant matrix__quadrant--important-not-urgent">
+          <h2>Important & Not Urgent</h2>
+          <ul class="matrix__quadrant--important-not-urgent__list">
+            <input class="matrix__quadrant--important-not-urgent__add" />
+          </ul>
+        </div>
+        <div class="matrix__quadrant matrix__quadrant--not-important-urgent">
+          <h2>Not Important & Urgent</h2>
+          <ul class="matrix__quadrant--not-important-urgent__list">
+            <input class="matrix__quadrant--not-important-urgent__add" />
+          </ul>
+        </div>
+        <div
+          class="matrix__quadrant matrix__quadrant--not-important-not-urgent"
+        >
+          <h2>Not Important & Not Urgent</h2>
+          <ul class="matrix__quadrant--not-important-not-urgent__list">
+            <input class="matrix__quadrant--not-important-not-urgent__add" />
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Created by <a href="">Pietrell</a></p>
+    </footer>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

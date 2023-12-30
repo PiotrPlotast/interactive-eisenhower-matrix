@@ -1,0 +1,81 @@
+/* CSS Reset by Andy Bell */
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles (bullets/numbers) */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove default padding */
+figure,
+blockquote,
+dl,
+dd,
+p {
+  padding: 0;
+}
+
+/* Set default font size and line height */
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: "Lato", sans-serif; /* Added Lato font family */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Remove border outline on focused elements */
+button,
+input,
+textarea,
+select,
+a {
+  outline: none;
+}
+
+/* Remove text decoration on links */
+a {
+  text-decoration: none;
+}
+
+/* end of css reset */
+
+/* start of styles */
+
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid #ff0000;
+  margin: auto;
+}
+
+.matrix__quadrant {
+  border: 1px solid #0000ff;
+}
