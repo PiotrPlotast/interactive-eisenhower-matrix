@@ -11,11 +11,14 @@ import {
 } from "./matrixUtils.js";
 // end of selections
 
+// create matrix lists arrays to store items
 const matrixImportantUrgent = [];
 const matrixImportantNotUrgent = [];
 const matrixNotImportantUrgent = [];
 const matrixNotImportantNotUrgent = [];
+// end of creating matrix lists arrays to store items
 
+// add items to matrix lists and arrays
 function addItemToList(inputValue, list) {
   if (inputValue === "") {
     throw new Error("Please enter a value");
@@ -44,7 +47,9 @@ function addItemToList(inputValue, list) {
     }
   }
 }
+// end of adding items to matrix lists and arrays
 
+// add items to local storage
 function addInputValueToLocalStorage() {
   localStorage.setItem(
     "matrixImportantUrgentItems",
@@ -66,83 +71,89 @@ function addInputValueToLocalStorage() {
     JSON.stringify(matrixNotImportantNotUrgent)
   );
 }
+// end of adding items to local storage
 
+// delete items from local storage
 function deleteItemFromLocalStorage(list, item) {
   console.log(list);
   console.log(item);
-  // switch (list) {
-  //   case "matrix__quadrant--important-urgent__list":
-  //     console.log(list);
-  //     let matrixImportantUrgentItems = JSON.parse(
-  //       localStorage.getItem("matrixImportantUrgentItems")
-  //     );
-  //     const index1 = matrixImportantUrgentItems.indexOf(item);
-  //     if (index1 !== -1) {
-  //       matrixImportantUrgentItems.splice(index1, 1);
+  switch (list) {
+    case "matrix__quadrant--important-urgent__list":
+      console.log(list);
+      let matrixImportantUrgentItems = JSON.parse(
+        localStorage.getItem("matrixImportantUrgentItems")
+      );
+      const index1 = matrixImportantUrgentItems.indexOf(item);
+      if (index1 !== -1) {
+        matrixImportantUrgentItems.splice(index1, 1);
 
-  //       const arrayString = JSON.stringify(matrixImportantUrgentItems);
+        const arrayString = JSON.stringify(matrixImportantUrgentItems);
 
-  //       localStorage.setItem("matrixImportantUrgentList", arrayString);
-  //     }
-  //     break;
+        localStorage.setItem("matrixImportantUrgentList", arrayString);
+      }
+      break;
 
-  //   case "matrix__quadrant--important-not-urgent__list":
-  //     let matrixImportantNotUrgentItems = JSON.parse(
-  //       localStorage.getItem("matrixImportantNotUrgentItems")
-  //     );
-  //     const index2 = matrixImportantNotUrgentItems.indexOf(item);
-  //     if (index2 !== -1) {
-  //       matrixImportantNotUrgentItems.splice(index2, 1);
+    case "matrix__quadrant--important-not-urgent__list":
+      let matrixImportantNotUrgentItems = JSON.parse(
+        localStorage.getItem("matrixImportantNotUrgentItems")
+      );
+      const index2 = matrixImportantNotUrgentItems.indexOf(item);
+      if (index2 !== -1) {
+        matrixImportantNotUrgentItems.splice(index2, 1);
 
-  //       const arrayString = JSON.stringify(matrixImportantNotUrgentItems);
+        const arrayString = JSON.stringify(matrixImportantNotUrgentItems);
 
-  //       localStorage.setItem("matrixImportantNotUrgentList", arrayString);
-  //     }
-  //     break;
+        localStorage.setItem("matrixImportantNotUrgentList", arrayString);
+      }
+      break;
 
-  //   case "matrix__quadrant--not-important-urgent__list":
-  //     let matrixNotImportantUrgentItems = JSON.parse(
-  //       localStorage.getItem("matrixNotImportantUrgentItems")
-  //     );
-  //     const index3 = matrixNotImportantUrgentItems.indexOf(item);
-  //     if (index3 !== -1) {
-  //       matrixNotImportantUrgentItems.splice(index3, 1);
+    case "matrix__quadrant--not-important-urgent__list":
+      let matrixNotImportantUrgentItems = JSON.parse(
+        localStorage.getItem("matrixNotImportantUrgentItems")
+      );
+      const index3 = matrixNotImportantUrgentItems.indexOf(item);
+      if (index3 !== -1) {
+        matrixNotImportantUrgentItems.splice(index3, 1);
 
-  //       const arrayString = JSON.stringify(matrixNotImportantUrgentItems);
+        const arrayString = JSON.stringify(matrixNotImportantUrgentItems);
 
-  //       localStorage.setItem("matrixNotImportantUrgentList", arrayString);
-  //     }
-  //     break;
+        localStorage.setItem("matrixNotImportantUrgentList", arrayString);
+      }
+      break;
 
-  //   case "matrix__quadrant--not-important-not-urgent__list":
-  //     let matrixNotImportantNotUrgentItems = JSON.parse(
-  //       localStorage.getItem("matrixNotImportantNotUrgentItems")
-  //     );
+    case "matrix__quadrant--not-important-not-urgent__list":
+      let matrixNotImportantNotUrgentItems = JSON.parse(
+        localStorage.getItem("matrixNotImportantNotUrgentItems")
+      );
 
-  //     const index4 = matrixNotImportantNotUrgentItems.indexOf(item);
-  //     if (index4 !== -1) {
-  //       matrixNotImportantNotUrgentItems.splice(index4, 1);
+      const index4 = matrixNotImportantNotUrgentItems.indexOf(item);
+      if (index4 !== -1) {
+        matrixNotImportantNotUrgentItems.splice(index4, 1);
 
-  //       const arrayString = JSON.stringify(matrixNotImportantNotUrgentItems);
+        const arrayString = JSON.stringify(matrixNotImportantNotUrgentItems);
 
-  //       localStorage.setItem("matrixNotImportantNotUrgentList", arrayString);
-  //     }
-  //     break;
-  // }
+        localStorage.setItem("matrixNotImportantNotUrgentList", arrayString);
+      }
+      break;
+  }
 }
+// end of delete items from local storage
 
+// delete items from matrix lists
 function deleteItem() {
   const deleteItems = document.querySelectorAll(".matrix__list__item__delete");
   deleteItems.forEach((deleteItem) => {
     const list = deleteItem.parentElement.parentElement;
     const item = deleteItem.parentElement;
-
+    // console.log(deleteItem.parentElement);
     deleteItem.addEventListener("click", (event) => {
+      console.log("test");
       deleteItemFromLocalStorage(list, item);
       event.target.parentElement.remove();
     });
   });
 }
+// end of delete items from matrix lists
 
 // add items to matrix lists on enter key press
 addToImportantUrgentList.addEventListener("keydown", (event) => {
