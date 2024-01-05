@@ -26,129 +26,115 @@ const addToNotImportantNotUrgentList = document.querySelector(
   ".matrix__quadrant--not-important-not-urgent__add"
 );
 
+class Item {
+  constructor(name, quadrant) {
+    this.name = name;
+    this.quadrant = quadrant;
+  }
+}
+
 let matrix = {
-  importantUrgent: [],
-  importantNotUrgent: [],
-  notImportantUrgent: [],
-  notImportantNotUrgent: [],
-  importantUrgentList: matrixImportantUrgentList,
-  importantNotUrgentList: matrixImportantNotUrgentList,
-  notImportantUrgentList: matrixNotImportantUrgentList,
-  notImportantNotUrgentList: matrixNotImportantNotUrgentList,
-  add: function (item, list) {
-    if (list === this.importantUrgentList) {
-      this.importantUrgent.push(item);
-    } else if (list === this.importantNotUrgentList) {
-      this.importantNotUrgent.push(item);
-    } else if (list === this.notImportantUrgentList) {
-      this.notImportantUrgent.push(item);
-    } else if (list === this.notImportantNotUrgentList) {
-      this.notImportantNotUrgent.push(item);
+  importantUrgentItems: [],
+  importantNotUrgentItems: [],
+  notImportantUrgentItems: [],
+  notImportantNotUrgentItems: [],
+  importantUrgentHTMLList: matrixImportantUrgentList,
+  importantNotUrgentHTMLList: matrixImportantNotUrgentList,
+  notImportantUrgentHTMLList: matrixNotImportantUrgentList,
+  notImportantNotUrgentHTMLList: matrixNotImportantNotUrgentList,
+
+  addItem: function (name, quadrant) {
+    switch (quadrant) {
+      case "importantUrgent":
+        this.importantUrgentItems.push(new Item(name, quadrant));
+        this.importantUrgentHTMLList.innerHTML += `
+        <li class="matrix__quadrant--important-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        attachDeleteButtonListeners();
+        break;
+      case "importantNotUrgent":
+        this.importantNotUrgentItems.push(new Item(name, quadrant));
+        this.importantNotUrgentHTMLList.innerHTML += `
+        <li class="matrix__quadrant--important-not-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        attachDeleteButtonListeners();
+        break;
+      case "notImportantUrgent":
+        this.notImportantUrgentItems.push(new Item(name, quadrant));
+        this.notImportantUrgentHTMLList.innerHTML += `
+        <li class="matrix__quadrant--not-important-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        attachDeleteButtonListeners();
+        break;
+      case "notImportantNotUrgent":
+        this.notImportantNotUrgentItems.push(new Item(name, quadrant));
+        this.notImportantNotUrgentHTMLList.innerHTML += `
+        <li class="matrix__quadrant--not-important-not-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        attachDeleteButtonListeners();
+        break;
+      default:
+        console.log("Invalid quadrant name");
+    }
+  },
+
+  deleteItem: function (item) {
+    switch (item.quadrant) {
+      case "importantUrgent":
+        this.importantUrgentItems.splice(
+          this.importantUrgentItems.indexOf(item),
+          1
+        );
+        break;
+      case "importantNotUrgent":
+        this.importantNotUrgentItems.splice(
+          this.importantNotUrgentItems.indexOf(item),
+          1
+        );
+        break;
+      case "notImportantUrgent":
+        this.notImportantUrgentItems.splice(
+          this.notImportantUrgentItems.indexOf(item),
+          1
+        );
+        break;
+      case "notImportantNotUrgent":
+        this.notImportantNotUrgentItems.splice(
+          this.notImportantNotUrgentItems.indexOf(item),
+          1
+        );
+        break;
+      default:
+        console.log("Invalid quadrant name");
+        console.log(item.quadrant);
     }
   },
 };
 
-let matrixLocalStorage = {
-  importantUrgent: [],
-  importantNotUrgent: [],
-  notImportantUrgent: [],
-  notImportantNotUrgent: [],
-  addToLocalStorage: function (item, list) {
-    if (list === matrixImportantUrgentList) {
-      this.importantUrgent.push(item);
-      localStorage.setItem(
-        "importantUrgent",
-        JSON.stringify(this.importantUrgent)
-      );
-    } else if (list === matrixImportantNotUrgentList) {
-      this.importantNotUrgent.push(item);
-      localStorage.setItem(
-        "importantNotUrgent",
-        JSON.stringify(this.importantNotUrgent)
-      );
-    } else if (list === matrixNotImportantUrgentList) {
-      this.notImportantUrgent.push(item);
-      localStorage.setItem(
-        "notImportantUrgent",
-        JSON.stringify(this.notImportantUrgent)
-      );
-    } else if (list === matrixNotImportantNotUrgentList) {
-      this.notImportantNotUrgent.push(item);
-      localStorage.setItem(
-        "notImportantNotUrgent",
-        JSON.stringify(this.notImportantNotUrgent)
-      );
-    }
-  },
-};
+function attachDeleteButtonListeners() {
+  const deleteBtns = document.querySelectorAll(".deleteBtn");
+  deleteBtns.forEach((btn) => {
+    btn.removeEventListener("click", matrix.deleteItem);
+    btn.addEventListener("click", matrix.deleteItem);
+  });
+}
 
-// add items to matrices
-addToImportantUrgentList.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    if (addToImportantUrgentList.value === "") return;
-    const item = addToImportantUrgentList.value;
-    const li = document.createElement("li");
-    const deleteItem = document.createElement("button");
-    deleteItem.textContent = "X";
-    deleteItem.classList.add("delete");
-    li.textContent = item;
-    li.appendChild(deleteItem);
-    matrix.add(item, matrixImportantUrgentList);
-    matrixImportantUrgentList.appendChild(li);
-    addToImportantUrgentList.value = "";
-    matrixLocalStorage.addToLocalStorage(item, matrixImportantUrgentList);
-  }
+addToImportantUrgentList.addEventListener("click", () => {
+  const itemName = prompt("Enter item name");
+  matrix.addItem(itemName, "importantUrgent");
 });
 
-addToImportantNotUrgentList.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    if (addToImportantNotUrgentList.value === "") return;
-    const item = addToImportantNotUrgentList.value;
-    const li = document.createElement("li");
-    const deleteItem = document.createElement("button");
-    deleteItem.textContent = "X";
-    deleteItem.classList.add("delete");
-    li.textContent = item;
-    li.appendChild(deleteItem);
-    matrix.add(item, matrixImportantNotUrgentList);
-    matrixImportantNotUrgentList.appendChild(li);
-    addToImportantNotUrgentList.value = "";
-    matrixLocalStorage.addToLocalStorage(item, matrixImportantNotUrgentList);
-  }
+addToImportantNotUrgentList.addEventListener("click", () => {
+  const itemName = prompt("Enter item name");
+  matrix.addItem(itemName, "importantNotUrgent");
 });
 
-addToNotImportantUrgentList.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    if (addToNotImportantUrgentList.value === "") return;
-    const item = addToNotImportantUrgentList.value;
-    const li = document.createElement("li");
-    const deleteItem = document.createElement("button");
-    deleteItem.textContent = "X";
-    deleteItem.classList.add("delete");
-    li.textContent = item;
-    li.appendChild(deleteItem);
-    matrix.add(item, matrixNotImportantUrgentList);
-    matrixNotImportantUrgentList.appendChild(li);
-    addToNotImportantUrgentList.value = "";
-    matrixLocalStorage.addToLocalStorage(item, matrixNotImportantUrgentList);
-  }
+addToNotImportantUrgentList.addEventListener("click", () => {
+  const itemName = prompt("Enter item name");
+  matrix.addItem(itemName, "notImportantUrgent");
 });
 
-addToNotImportantNotUrgentList.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    if (addToNotImportantNotUrgentList.value === "") return;
-    const item = addToNotImportantNotUrgentList.value;
-    const li = document.createElement("li");
-    const deleteItem = document.createElement("button");
-    deleteItem.textContent = "X";
-    deleteItem.classList.add("delete");
-    li.textContent = item;
-    li.appendChild(deleteItem);
-    matrix.add(item, matrixNotImportantNotUrgentList);
-    matrixNotImportantNotUrgentList.appendChild(li);
-    addToNotImportantNotUrgentList.value = "";
-    matrixLocalStorage.addToLocalStorage(item, matrixNotImportantNotUrgentList);
-  }
+addToNotImportantNotUrgentList.addEventListener("click", () => {
+  const itemName = prompt("Enter item name");
+  matrix.addItem(itemName, "notImportantNotUrgent");
 });
-
-const deleteItem = document.querySelectorAll(".delete");
