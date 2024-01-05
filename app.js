@@ -50,28 +50,28 @@ let matrix = {
         this.importantUrgentHTMLList.innerHTML += `
         <li class="matrix__quadrant--important-urgent__item">${name}</li>
         <button class="deleteBtn">X</button>`;
-        attachDeleteButtonListeners();
+        this.attachDeleteButtonListeners();
         break;
       case "importantNotUrgent":
         this.importantNotUrgentItems.push(new Item(name, quadrant));
         this.importantNotUrgentHTMLList.innerHTML += `
         <li class="matrix__quadrant--important-not-urgent__item">${name}</li>
         <button class="deleteBtn">X</button>`;
-        attachDeleteButtonListeners();
+        this.attachDeleteButtonListeners();
         break;
       case "notImportantUrgent":
         this.notImportantUrgentItems.push(new Item(name, quadrant));
         this.notImportantUrgentHTMLList.innerHTML += `
         <li class="matrix__quadrant--not-important-urgent__item">${name}</li>
         <button class="deleteBtn">X</button>`;
-        attachDeleteButtonListeners();
+        this.attachDeleteButtonListeners();
         break;
       case "notImportantNotUrgent":
         this.notImportantNotUrgentItems.push(new Item(name, quadrant));
         this.notImportantNotUrgentHTMLList.innerHTML += `
         <li class="matrix__quadrant--not-important-not-urgent__item">${name}</li>
         <button class="deleteBtn">X</button>`;
-        attachDeleteButtonListeners();
+        this.attachDeleteButtonListeners();
         break;
       default:
         console.log("Invalid quadrant name");
@@ -109,15 +109,19 @@ let matrix = {
         console.log(item.quadrant);
     }
   },
-};
 
-function attachDeleteButtonListeners() {
-  const deleteBtns = document.querySelectorAll(".deleteBtn");
-  deleteBtns.forEach((btn) => {
-    btn.removeEventListener("click", matrix.deleteItem);
-    btn.addEventListener("click", matrix.deleteItem);
-  });
-}
+  attachDeleteButtonListeners: function () {
+    const deleteBtns = document.querySelectorAll(".deleteBtn");
+    deleteBtns.forEach((btn) => {
+      // btn.removeEventListener("click", matrix.deleteItem);
+      btn.addEventListener("click", (e) => {
+        const item = e.target.previousElementSibling;
+        console.log(item);
+        matrix.deleteItem(item);
+      });
+    });
+  },
+};
 
 addToImportantUrgentList.addEventListener("click", () => {
   const itemName = prompt("Enter item name");
