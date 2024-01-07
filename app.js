@@ -89,24 +89,35 @@ let matrix = {
           this.importantUrgentItems.indexOf(item),
           1
         );
+        const importantUrgentElements = Array.from(
+          document.querySelectorAll(".matrix__quadrant--important-urgent__item")
+        );
+        const importantUrgentElement = importantUrgentElements.find(
+          (element) => element.textContent === item.name
+        );
+        console.log(importantUrgentElement);
+        this.importantUrgentHTMLList.removeChild(importantUrgentElement);
         break;
       case "importantNotUrgent":
         this.importantNotUrgentItems.splice(
           this.importantNotUrgentItems.indexOf(item),
           1
         );
+        this.ImportantNotUrgentHTMLList.removeChild(item.element);
         break;
       case "notImportantUrgent":
         this.notImportantUrgentItems.splice(
           this.notImportantUrgentItems.indexOf(item),
           1
         );
+        this.notImportantUrgentHTMLList.removeChild(item.element);
         break;
       case "notImportantNotUrgent":
         this.notImportantNotUrgentItems.splice(
           this.notImportantNotUrgentItems.indexOf(item),
           1
         );
+        this.notImportantNotUrgentHTMLList.removeChild(item.element);
         break;
       default:
         console.log("Invalid quadrant name");
