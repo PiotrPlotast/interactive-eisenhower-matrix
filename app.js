@@ -26,6 +26,7 @@ const addToNotImportantNotUrgentList = document.querySelector(
   ".matrix__quadrant--not-important-not-urgent__add"
 );
 
+// create a class for each item in the matrix
 class Item {
   constructor(name, quadrant) {
     this.name = name;
@@ -81,6 +82,7 @@ let matrix = {
         console.log("Invalid quadrant name");
     }
   },
+
   findItemByName: function (name) {
     return this.importantUrgentItems
       .concat(
@@ -122,26 +124,52 @@ let matrix = {
         console.log(item.quadrant);
     }
   },
+
+  addItemsToLocalstorage: function () {
+    localStorage.setItem(
+      "importantUrgentItems",
+      JSON.stringify(this.importantUrgentItems)
+    );
+    localStorage.setItem(
+      "importantNotUrgentItems",
+      JSON.stringify(this.importantNotUrgentItems)
+    );
+    localStorage.setItem(
+      "notImportantUrgentItems",
+      JSON.stringify(this.notImportantUrgentItems)
+    );
+    localStorage.setItem(
+      "notImportantNotUrgentItems",
+      JSON.stringify(this.notImportantNotUrgentItems)
+    );
+    console.log(JSON.stringify(this.importantUrgentItems));
+  },
 };
 
 addToImportantUrgentList.addEventListener("click", () => {
-  const itemName = prompt("Enter item name");
-  matrix.addItem(itemName, "importantUrgent");
+  if (KeyboardEvent.key === "Enter") {
+    const itemName = addToImportantUrgentList.value;
+    matrix.addItem(itemName, "importantUrgent");
+    matrix.addItemsToLocalstorage();
+  }
 });
 
 addToImportantNotUrgentList.addEventListener("click", () => {
   const itemName = prompt("Enter item name");
   matrix.addItem(itemName, "importantNotUrgent");
+  matrix.addItemsToLocalstorage();
 });
 
 addToNotImportantUrgentList.addEventListener("click", () => {
   const itemName = prompt("Enter item name");
   matrix.addItem(itemName, "notImportantUrgent");
+  matrix.addItemsToLocalstorage();
 });
 
 addToNotImportantNotUrgentList.addEventListener("click", () => {
   const itemName = prompt("Enter item name");
   matrix.addItem(itemName, "notImportantNotUrgent");
+  matrix.addItemsToLocalstorage();
 });
 
 document.addEventListener("click", (event) => {
@@ -149,7 +177,7 @@ document.addEventListener("click", (event) => {
   if (event.target.matches(".deleteBtn")) {
     const itemName = event.target.previousElementSibling.textContent;
     const item = matrix.findItemByName(itemName);
-    console.log(item);
     event.target.parentElement.remove();
+    matrix.deleteItem(item);
   }
 });
