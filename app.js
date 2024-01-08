@@ -48,34 +48,30 @@ let matrix = {
       case "importantUrgent":
         this.importantUrgentItems.push(new Item(name, quadrant));
         this.importantUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--important-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        <li class="matrix__quadrant--important-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        this.attachDeleteButtonListeners();
         break;
       case "importantNotUrgent":
         this.importantNotUrgentItems.push(new Item(name, quadrant));
         this.importantNotUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--important-not-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        <li class="matrix__quadrant--important-not-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        this.attachDeleteButtonListeners();
         break;
       case "notImportantUrgent":
         this.notImportantUrgentItems.push(new Item(name, quadrant));
         this.notImportantUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--not-important-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        <li class="matrix__quadrant--not-important-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        this.attachDeleteButtonListeners();
         break;
       case "notImportantNotUrgent":
         this.notImportantNotUrgentItems.push(new Item(name, quadrant));
         this.notImportantNotUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--not-important-not-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        <li class="matrix__quadrant--not-important-not-urgent__item">${name}</li>
+        <button class="deleteBtn">X</button>`;
+        this.attachDeleteButtonListeners();
         break;
       default:
         console.log("Invalid quadrant name");
@@ -112,6 +108,18 @@ let matrix = {
         console.log("Invalid quadrant name");
         console.log(item.quadrant);
     }
+  },
+
+  attachDeleteButtonListeners: function () {
+    const deleteBtns = document.querySelectorAll(".deleteBtn");
+    deleteBtns.forEach((btn) => {
+      // btn.removeEventListener("click", matrix.deleteItem);
+      btn.addEventListener("click", (e) => {
+        const item = e.target.previousElementSibling;
+        console.log(item);
+        matrix.deleteItem(item);
+      });
+    });
   },
 };
 
