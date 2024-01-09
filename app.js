@@ -186,7 +186,6 @@ addToNotImportantNotUrgentList.addEventListener("keydown", function (event) {
 });
 
 document.addEventListener("click", (event) => {
-  // Check if the clicked element is a delete button
   if (event.target.matches(".deleteBtn")) {
     const itemName = event.target.previousElementSibling.textContent;
     const item = matrix.findItemByName(itemName);
