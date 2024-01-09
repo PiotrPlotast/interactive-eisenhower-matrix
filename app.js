@@ -142,34 +142,47 @@ let matrix = {
       "notImportantNotUrgentItems",
       JSON.stringify(this.notImportantNotUrgentItems)
     );
-    console.log(JSON.stringify(this.importantUrgentItems));
   },
 };
 
-addToImportantUrgentList.addEventListener("click", () => {
-  if (KeyboardEvent.key === "Enter") {
+addToImportantUrgentList.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    console.log(addToImportantUrgentList.value);
     const itemName = addToImportantUrgentList.value;
     matrix.addItem(itemName, "importantUrgent");
     matrix.addItemsToLocalstorage();
+    addToImportantUrgentList.value = "";
   }
 });
 
-addToImportantNotUrgentList.addEventListener("click", () => {
-  const itemName = prompt("Enter item name");
-  matrix.addItem(itemName, "importantNotUrgent");
-  matrix.addItemsToLocalstorage();
+addToImportantNotUrgentList.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    console.log(addToImportantNotUrgentList.value);
+    const itemName = addToImportantNotUrgentList.value;
+    matrix.addItem(itemName, "importantNotUrgent");
+    matrix.addItemsToLocalstorage();
+    addToImportantNotUrgentList.value = "";
+  }
 });
 
-addToNotImportantUrgentList.addEventListener("click", () => {
-  const itemName = prompt("Enter item name");
-  matrix.addItem(itemName, "notImportantUrgent");
-  matrix.addItemsToLocalstorage();
+addToNotImportantUrgentList.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    console.log(addToNotImportantUrgentList.value);
+    const itemName = addToNotImportantUrgentList.value;
+    matrix.addItem(itemName, "notImportantUrgent");
+    matrix.addItemsToLocalstorage();
+    addToNotImportantUrgentList.value = "";
+  }
 });
 
-addToNotImportantNotUrgentList.addEventListener("click", () => {
-  const itemName = prompt("Enter item name");
-  matrix.addItem(itemName, "notImportantNotUrgent");
-  matrix.addItemsToLocalstorage();
+addToNotImportantNotUrgentList.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    console.log(addToNotImportantNotUrgentList.value);
+    const itemName = addToNotImportantNotUrgentList.value;
+    matrix.addItem(itemName, "notImportantNotUrgent");
+    matrix.addItemsToLocalstorage();
+    addToNotImportantNotUrgentList.value = "";
+  }
 });
 
 document.addEventListener("click", (event) => {
