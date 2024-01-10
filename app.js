@@ -48,35 +48,43 @@ let matrix = {
     switch (quadrant) {
       case "importantUrgent":
         this.importantUrgentItems.push(new Item(name, quadrant));
-        this.importantUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--important-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        const newImportantUrgent = document.createElement("li");
+        newImportantUrgent.classList.add("matrix__list__item");
+        newImportantUrgent.innerHTML = `
+        <p class="matrix__list__item__input">${name}</p>
+        <button class="matrix__list__item__delete">X</button>
+        `;
+        this.importantUrgentHTMLList.prepend(newImportantUrgent);
         break;
       case "importantNotUrgent":
         this.importantNotUrgentItems.push(new Item(name, quadrant));
-        this.importantNotUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--important-not-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        const newImportantNotUrgent = document.createElement("li");
+        newImportantNotUrgent.classList.add("matrix__list__item");
+        newImportantNotUrgent.innerHTML = `
+        <p class="matrix__list__item__input">${name}</p>
+        <button class="matrix__list__item__delete">X</button>
+        `;
+        this.importantNotUrgentHTMLList.prepend(newImportantNotUrgent);
         break;
       case "notImportantUrgent":
         this.notImportantUrgentItems.push(new Item(name, quadrant));
-        this.notImportantUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--not-important-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        const newnotImportantUrgent = document.createElement("li");
+        newnotImportantUrgent.classList.add("matrix__list__item");
+        newnotImportantUrgent.innerHTML = `
+        <p class="matrix__list__item__input">${name}</p>
+        <button class="matrix__list__item__delete">X</button>
+        `;
+        this.notImportantUrgentHTMLList.prepend(newnotImportantUrgent);
         break;
       case "notImportantNotUrgent":
         this.notImportantNotUrgentItems.push(new Item(name, quadrant));
-        this.notImportantNotUrgentHTMLList.innerHTML += `
-        <li class="matrix__quadrant--not-important-not-urgent__item">
-        <span>${name}</span>
-        <button class="deleteBtn">X</button>
-        </li>`;
+        const newNotImportantNotUrgent = document.createElement("li");
+        newNotImportantNotUrgent.classList.add("matrix__list__item");
+        newNotImportantNotUrgent.innerHTML = `
+        <p class="matrix__list__item__input">${name}</p>
+        <button class="matrix__list__item__delete">X</button>
+        `;
+        this.notImportantNotUrgentHTMLList.prepend(newNotImportantNotUrgent);
         break;
       default:
         console.log("Invalid quadrant name");
@@ -145,8 +153,9 @@ let matrix = {
   },
 };
 
-addToImportantUrgentList.addEventListener("keydown", function (event) {
+addToImportantUrgentList.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
+    if (addToImportantUrgentList.value === "") return;
     console.log(addToImportantUrgentList.value);
     const itemName = addToImportantUrgentList.value;
     matrix.addItem(itemName, "importantUrgent");
@@ -155,8 +164,9 @@ addToImportantUrgentList.addEventListener("keydown", function (event) {
   }
 });
 
-addToImportantNotUrgentList.addEventListener("keydown", function (event) {
+addToImportantNotUrgentList.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
+    if (addToImportantNotUrgentList.value === "") return;
     console.log(addToImportantNotUrgentList.value);
     const itemName = addToImportantNotUrgentList.value;
     matrix.addItem(itemName, "importantNotUrgent");
@@ -165,8 +175,9 @@ addToImportantNotUrgentList.addEventListener("keydown", function (event) {
   }
 });
 
-addToNotImportantUrgentList.addEventListener("keydown", function (event) {
+addToNotImportantUrgentList.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
+    if (addToNotImportantUrgentList.value === "") return;
     console.log(addToNotImportantUrgentList.value);
     const itemName = addToNotImportantUrgentList.value;
     matrix.addItem(itemName, "notImportantUrgent");
@@ -175,8 +186,9 @@ addToNotImportantUrgentList.addEventListener("keydown", function (event) {
   }
 });
 
-addToNotImportantNotUrgentList.addEventListener("keydown", function (event) {
+addToNotImportantNotUrgentList.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
+    if (addToNotImportantNotUrgentList.value === "") return;
     console.log(addToNotImportantNotUrgentList.value);
     const itemName = addToNotImportantNotUrgentList.value;
     matrix.addItem(itemName, "notImportantNotUrgent");
