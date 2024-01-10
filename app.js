@@ -151,6 +151,42 @@ let matrix = {
       JSON.stringify(this.notImportantNotUrgentItems)
     );
   },
+
+  loadItemsFromLocalStorage: function () {
+    const importantUrgentItems = JSON.parse(
+      localStorage.getItem("importantUrgentItems")
+    );
+    const importantNotUrgentItems = JSON.parse(
+      localStorage.getItem("importantNotUrgentItems")
+    );
+    const notImportantUrgentItems = JSON.parse(
+      localStorage.getItem("notImportantUrgentItems")
+    );
+    const notImportantNotUrgentItems = JSON.parse(
+      localStorage.getItem("notImportantNotUrgentItems")
+    );
+
+    if (importantUrgentItems) {
+      importantUrgentItems.forEach((item) => {
+        this.addItem(item.name, item.quadrant);
+      });
+    }
+    if (importantNotUrgentItems) {
+      importantNotUrgentItems.forEach((item) => {
+        this.addItem(item.name, item.quadrant);
+      });
+    }
+    if (notImportantUrgentItems) {
+      notImportantUrgentItems.forEach((item) => {
+        this.addItem(item.name, item.quadrant);
+      });
+    }
+    if (notImportantNotUrgentItems) {
+      notImportantNotUrgentItems.forEach((item) => {
+        this.addItem(item.name, item.quadrant);
+      });
+    }
+  },
 };
 
 addToImportantUrgentList.addEventListener("keydown", (event) => {
@@ -205,3 +241,7 @@ document.addEventListener("click", (event) => {
     matrix.deleteItem(item);
   }
 });
+
+window.onload = function () {
+  matrix.loadItemsFromLocalStorage();
+};
