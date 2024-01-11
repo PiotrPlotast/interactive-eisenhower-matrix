@@ -152,6 +152,38 @@ let matrix = {
     );
   },
 
+  deleteItemFromLocalStorage: function (item) {
+    switch (item.quadrant) {
+      case "importantUrgent":
+        localStorage.setItem(
+          "importantUrgentItems",
+          JSON.stringify(this.importantUrgentItems)
+        );
+        break;
+      case "importantNotUrgent":
+        localStorage.setItem(
+          "importantNotUrgentItems",
+          JSON.stringify(this.importantNotUrgentItems)
+        );
+        break;
+      case "notImportantUrgent":
+        localStorage.setItem(
+          "notImportantUrgentItems",
+          JSON.stringify(this.notImportantUrgentItems)
+        );
+        break;
+      case "notImportantNotUrgent":
+        localStorage.setItem(
+          "notImportantNotUrgentItems",
+          JSON.stringify(this.notImportantNotUrgentItems)
+        );
+        break;
+      default:
+        console.log("Invalid quadrant name");
+        console.log(item.quadrant);
+    }
+  },
+
   loadItemsFromLocalStorage: function () {
     const importantUrgentItems = JSON.parse(
       localStorage.getItem("importantUrgentItems")
@@ -234,12 +266,12 @@ addToNotImportantNotUrgentList.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  console.log(event.target);
   if (event.target.matches(".deleteBtn")) {
     const itemName = event.target.previousElementSibling.textContent;
     const item = matrix.findItemByName(itemName);
     event.target.parentElement.remove();
     matrix.deleteItem(item);
+    matrix.deleteItemFromLocalStorage(item);
   }
 });
 
