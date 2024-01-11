@@ -79,3 +79,35 @@ a {
 .matrix__quadrant {
   border: 1px solid #0000ff;
 }
+
+.matrix__quadrant--important-urgent {
+  background-color: #73e9d4;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.matrix__quadrant--important-not-urgent {
+  background-color: #7393e9;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.matrix__quadrant--not-important-urgent {
+  background-color: #b473e9;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.matrix__quadrant--not-important-not-urgent {
+  background-color: #e973b4;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
