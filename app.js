@@ -52,7 +52,7 @@ let matrix = {
         newImportantUrgent.classList.add("matrix__list__item");
         newImportantUrgent.innerHTML = `
         <p class="matrix__list__item__input">${name}</p>
-        <button class="matrix__list__item__delete">X</button>
+        <button class="deleteBtn">X</button>
         `;
         this.importantUrgentHTMLList.prepend(newImportantUrgent);
         break;
@@ -62,7 +62,7 @@ let matrix = {
         newImportantNotUrgent.classList.add("matrix__list__item");
         newImportantNotUrgent.innerHTML = `
         <p class="matrix__list__item__input">${name}</p>
-        <button class="matrix__list__item__delete">X</button>
+        <button class="deleteBtn">X</button>
         `;
         this.importantNotUrgentHTMLList.prepend(newImportantNotUrgent);
         break;
@@ -72,7 +72,7 @@ let matrix = {
         newnotImportantUrgent.classList.add("matrix__list__item");
         newnotImportantUrgent.innerHTML = `
         <p class="matrix__list__item__input">${name}</p>
-        <button class="matrix__list__item__delete">X</button>
+        <button class="deleteBtn">X</button>
         `;
         this.notImportantUrgentHTMLList.prepend(newnotImportantUrgent);
         break;
@@ -82,7 +82,7 @@ let matrix = {
         newNotImportantNotUrgent.classList.add("matrix__list__item");
         newNotImportantNotUrgent.innerHTML = `
         <p class="matrix__list__item__input">${name}</p>
-        <button class="matrix__list__item__delete">X</button>
+        <button class="deleteBtn">X</button>
         `;
         this.notImportantNotUrgentHTMLList.prepend(newNotImportantNotUrgent);
         break;
@@ -234,6 +234,7 @@ addToNotImportantNotUrgentList.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("click", (event) => {
+  console.log(event.target);
   if (event.target.matches(".deleteBtn")) {
     const itemName = event.target.previousElementSibling.textContent;
     const item = matrix.findItemByName(itemName);
@@ -242,6 +243,4 @@ document.addEventListener("click", (event) => {
   }
 });
 
-window.onload = function () {
-  matrix.loadItemsFromLocalStorage();
-};
+window.onload = matrix.loadItemsFromLocalStorage();
