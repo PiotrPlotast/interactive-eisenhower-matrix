@@ -44,7 +44,7 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   font-family: "Lato", sans-serif; /* Added Lato font family */
-  background-color: rgb(255, 249, 236);
+  background-color: #fff9ec;
 }
 
 /* Remove border outline on focused elements */
@@ -143,29 +143,5 @@ footer a {
   }
   .matrix__quadrant {
     margin: 0.5rem;
-  }
-  .matrix__quadrant--important-urgent {
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .matrix__quadrant--important-not-urgent {
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .matrix__quadrant--not-important-urgent {
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .matrix__quadrant--not-important-not-urgent {
-    margin-left: 0.5rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
   }
 }
