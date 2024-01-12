@@ -136,3 +136,36 @@ footer {
 footer a {
   text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  .matrix {
+    grid-template-columns: 1fr;
+  }
+  .matrix__quadrant {
+    margin: 0.5rem;
+  }
+  .matrix__quadrant--important-urgent {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .matrix__quadrant--important-not-urgent {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .matrix__quadrant--not-important-urgent {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .matrix__quadrant--not-important-not-urgent {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
