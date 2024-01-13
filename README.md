@@ -20,5 +20,6 @@ Page live at: https://piotrplotast.github.io/interactive-eisenhower-matrix/
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![image](https://github.com/PiotrPlotast/interactive-eisenhower-matrix/assets/89207478/30f4e74c-ace2-4b0d-87f0-70fb7a45fab4)
+
 
