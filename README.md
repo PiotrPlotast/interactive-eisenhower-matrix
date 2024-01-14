@@ -8,7 +8,7 @@
 
 Page live at: https://piotrplotast.github.io/interactive-eisenhower-matrix/ </br>
 </br>
-Interactive Eisenhower Matrix is a web app in which you can manage and save your tasks between sessions.
+Interactive Eisenhower Matrix is a web app in which you can categorize, manage and save your tasks between sessions.
 ## built with
 
 - HTML 
